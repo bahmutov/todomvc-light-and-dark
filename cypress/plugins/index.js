@@ -11,9 +11,23 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
-/* eslint-disable no-unused-vars */
+/* global console */
+/* eslint-disable no-unused-vars, no-console */
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+
+  // modify browser launch arguments
+  // https://on.cypress.io/browser-launch-api
+  on('before:browser:launch', (browser = {}, args) => {
+    console.log('browser', browser)
+
+    if (browser.family === 'chrome') {
+      console.log('adding dark mode browser flags')
+      args.push('--force-dark-mode=true')
+
+      return args
+    }
+  })
 }
 /* eslint-enable no-unused-vars */
