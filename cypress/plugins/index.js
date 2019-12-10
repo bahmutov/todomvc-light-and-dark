@@ -19,15 +19,15 @@ module.exports = (on, config) => {
 
   // modify browser launch arguments
   // https://on.cypress.io/browser-launch-api
-  on('before:browser:launch', (browser = {}, args) => {
-    console.log('browser', browser)
+  // on('before:browser:launch', (browser = {}, args) => {
+  //   console.log('browser', browser)
 
-    if (browser.family === 'chrome') {
-      console.log('adding dark mode browser flags')
-      args.push('--force-dark-mode=true')
+  //   if (browser.family === 'chrome') {
+  //     console.log('adding dark mode browser flags')
+  //     args.push('--force-light-mode=true')
 
-      return args
-    }
-  })
+  //     return args
+  //   }
+  // })
 }
 /* eslint-enable no-unused-vars */

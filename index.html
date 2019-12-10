@@ -5,7 +5,20 @@
 		<title>React • TodoMVC</title>
 		<link rel="stylesheet" href="node_modules/todomvc-common/base.css">
 		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
-		<link rel="stylesheet" media="(prefers-color-scheme: dark)" href="dark.css">
+		<!--
+			only loads the next script if the host OS supports Dark appearance and has it set
+			<link rel="stylesheet" media="(prefers-color-scheme: dark)" href="dark.css">
+		-->
+		<!-- Alternative: load dark CSS using JavaScript that we can stub from tests -->
+		<script>
+			if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				const link = document.createElement("link")
+				link.type = 'text/css';
+				link.rel = 'stylesheet';
+				link.href = 'dark.css';
+				document.head.appendChild(link)
+			}
+		</script>
 	</head>
 	<body>
 		<section class="todoapp"></section>
